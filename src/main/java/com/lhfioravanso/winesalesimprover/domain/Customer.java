@@ -6,6 +6,16 @@ public class Customer {
     private String cpf;
     private String nome;
 
+    public Customer(int id, String cpf, String nome) {
+        this.id = id;
+        this.cpf = cpf;
+        this.nome = nome;
+    }
+
+    public Customer() {
+
+    }
+
     public int getId() {
         return id;
     }

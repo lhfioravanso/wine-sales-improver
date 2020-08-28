@@ -11,6 +11,16 @@ public class Purchase {
     private BigDecimal valorTotal;
     private List<Item> itens;
 
+    public Purchase(String codigo, String data, String cliente, BigDecimal valorTotal, List<Item> itens) {
+        this.codigo = codigo;
+        this.data = data;
+        this.cliente = cliente;
+        this.valorTotal = valorTotal;
+        this.itens = itens;
+    }
+
+    public Purchase() {}
+
     public String getCodigo() {
         return codigo;
     }

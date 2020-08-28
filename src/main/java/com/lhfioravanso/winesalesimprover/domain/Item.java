@@ -11,6 +11,17 @@ public class Item {
     private String safra;
     private BigDecimal preco;
 
+    public Item(){}
+
+    public Item(String produto, String variedade, String pais, String categoria, String safra, BigDecimal preco) {
+        this.produto = produto;
+        this.variedade = variedade;
+        this.pais = pais;
+        this.categoria = categoria;
+        this.safra = safra;
+        this.preco = preco;
+    }
+
     public String getProduto() {
         return produto;
     }
