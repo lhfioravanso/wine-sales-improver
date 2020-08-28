@@ -1,4 +1,4 @@
-package com.lhfioravanso.winesalesimprover.entity;
+package com.lhfioravanso.winesalesimprover.domain;
 
 public class Customer {
 
