@@ -42,8 +42,22 @@ Navegue até o diretório onde foi gerado o arquivo .jar (diretorio /target) e r
 
 ## Acessar a API
 
-Após a aplicação, a api ficará disponivel em:
-- http://localhost:8080/api/v1/customer
-
-Para visualizar a documentação da api:
+Após subir a aplicação, a documentação da api ficará disponivel em:
 - http://localhost:8080/swagger-ui.html
+
+E os endpoints para resolução dos problemas ficaram disponiveis da seguinte forma:
+
+* 1: http://localhost:8080/api/v1/customer/highest-total-purchases
+* 2: http://localhost:8080/api/v1/customer/highest/{year}
+  * Ex: http://localhost:8080/api/v1/customer/highest/2016
+* 3: http://localhost:8080/api/v1/customer/fidelity
+* 4: http://localhost:8080/api/v1/customer/recommendation/{customerId}
+  * Ex: http://localhost:8080/api/v1/customer/recommendation/1
+  
+
+##### Débitos técnicos:
+
+Ficou pendente por questões de tempo, adicionar uma maior cobertura de testes unitarios, realizar tratamento de exceções e tratar a performance da API.
+
+Sobre a performance, a minha ideia inicial seria incluir cache nas requests utilizando redis a fim de evitar que a mesma request seja executada diversas vezes, visto que quase sempre trará o mesmo resultado.
+
