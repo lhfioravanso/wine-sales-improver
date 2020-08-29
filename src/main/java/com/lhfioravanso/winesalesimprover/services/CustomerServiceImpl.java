@@ -7,6 +7,7 @@ import com.lhfioravanso.winesalesimprover.domain.Purchase;
 import com.lhfioravanso.winesalesimprover.integration.CustomerDatabaseService;
 import com.lhfioravanso.winesalesimprover.integration.PurchaseHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -25,6 +26,7 @@ public class CustomerServiceImpl implements CustomerService {
         this.purchaseHistoryService = purchaseHistoryService;
     }
 
+    @Cacheable(value = "highest-total-purchases")
     @Override
     public List<CustomerWithTotalPurchaseValueResponseDto> listCustomersByHighestTotalPurchaseValues() {
 
@@ -47,6 +49,7 @@ public class CustomerServiceImpl implements CustomerService {
                 collect(Collectors.toList());
     }
 
+    @Cacheable(value = "highest", key="#year")
     @Override
     public CustomerWithHighestPurchaseByYearResponseDto getCustomerWithHighestPurchaseByYear(String year) {
 
@@ -72,6 +75,7 @@ public class CustomerServiceImpl implements CustomerService {
         return null;
     }
 
+    @Cacheable(value = "fidelity")
     @Override
     public List<CustomerWithFidelityResponseDto> listCustomersByFidelity() {
 
@@ -91,6 +95,7 @@ public class CustomerServiceImpl implements CustomerService {
                 collect(Collectors.toList());
     }
 
+    @Cacheable(value = "recommendation", key="#customerId")
     @Override
     public WineRecommendationResponseDto wineRecommendation(int customerId) {
 
@@ -107,7 +112,6 @@ public class CustomerServiceImpl implements CustomerService {
                 mostFrequentWine.getCategoria(), mostFrequentWine.getSafra(), mostFrequentWine.getPreco()
         );
     }
-
 
     private Item getMostFrequentWine(List<Purchase> customerPurchases){
         List<Item> wines = new ArrayList<>();

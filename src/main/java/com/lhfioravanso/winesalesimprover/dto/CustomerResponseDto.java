@@ -1,6 +1,8 @@
 package com.lhfioravanso.winesalesimprover.dto;
 
-public class CustomerResponseDto {
+import java.io.Serializable;
+
+public class CustomerResponseDto implements Serializable {
 
     private int id;
     private String name;

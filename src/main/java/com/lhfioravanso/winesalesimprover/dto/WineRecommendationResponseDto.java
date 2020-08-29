@@ -1,8 +1,10 @@
 package com.lhfioravanso.winesalesimprover.dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class WineRecommendationResponseDto {
+public class WineRecommendationResponseDto implements Serializable {
+
     private String produto;
     private String variedade;
     private String pais;
