@@ -24,7 +24,17 @@ API com cadastro de clientes
 - Swagger
 - JUnit
 - Mockito
+- Redis
 
+## Requisitos
+
+Possuir Docker instalado na máquina ou uma instância do redis. 
+
+A instância do redis deve estar acessível em 127.0.0.1 na porta 6379, ou os dados de conexão devem ser alterados no arquivo 'application.properties'.
+
+Para criar a instância do redis no docker, rode o seguinte comando: 
+   * docker run -d -p 6379:6379 -i -t redis:3.2.5-alpine 
+   
 ## Rodar a aplicação
 
 Clone o projeto e navegue até a pasta root do mesmo por um terminal.
@@ -49,15 +59,17 @@ E os endpoints para resolução dos problemas ficaram disponiveis da seguinte fo
 
 * 1: http://localhost:8080/api/v1/customer/highest-total-purchases
 * 2: http://localhost:8080/api/v1/customer/highest/{year}
-  * Ex: http://localhost:8080/api/v1/customer/highest/2016
 * 3: http://localhost:8080/api/v1/customer/fidelity
 * 4: http://localhost:8080/api/v1/customer/recommendation/{customerId}
-  * Ex: http://localhost:8080/api/v1/customer/recommendation/1
+
+## Observação:
+
+Para melhorar a performance foi implementado cache nas requests, sempre que uma mesma request for chamada pela primeira vez será adicionada no cache e a partir das proximas chamadas, buscará diretamente do cache.
+
+O cache é limpo a cada 1 hora, configurável no arquivo 'application.properties'.
+  
   
 
-##### Débitos técnicos:
+### Débitos técnicos:
 
-Ficou pendente por questões de tempo, adicionar uma maior cobertura de testes unitarios, realizar tratamento de exceções e tratar a performance da API.
-
-Sobre a performance, a minha ideia inicial seria incluir cache nas requests utilizando redis a fim de evitar que a mesma request seja executada diversas vezes, visto que quase sempre trará o mesmo resultado.
-
+Ficou pendente por questões de tempo, adicionar uma maior cobertura de testes unitarios e realizar tratamento de exceções.
